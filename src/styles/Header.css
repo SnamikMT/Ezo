@@ -1,0 +1,45 @@
+/* Общий стиль для Header */
+.header {
+    background: linear-gradient(90deg, #4c1d95, #6b21a8); /* Градиент с мистическими оттенками фиолетового */
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  /* Навигация */
+  .header__nav {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Логотип */
+  .header__logo {
+    font-family: 'Cinzel', serif; /* Элегантный шрифт */
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Ссылки */
+  .header__links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .header__link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e0e7ff; /* Легкий светло-фиолетовый */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .header__link:hover {
+    color: #c084fc; /* Светящийся эффект при наведении */
+    text-shadow: 0 0 10px #d8b4fe; /* Мягкое свечение */
+  }
+  

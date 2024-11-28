@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Attack Type';
+    src: url('./OTTOATTACTYPE.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+    @font-face {
+    font-family: 'Grivas';
+    src: url('./GrivasPersonalUse.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Vinque';
+    src: url('./vinque-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+  
+  
+  /* Пример использования шрифта */
+  body {
+    font-family: 'Vinque', sans-serif;
+  }
+  

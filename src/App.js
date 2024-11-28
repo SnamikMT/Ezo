@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import NatalChart from './pages/NatalChart';
+import Tarot from './pages/Tarot';
+import Matrix from './pages/Matrix';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TarotReading from './components/TarotReading'; 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* <Header /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/natal-chart" element={<NatalChart />} />
+        <Route path="/tarot" element={<Tarot />} />
+        <Route path="/matrix" element={<Matrix />} />
+        <Route path="/tarot-reading" element={<TarotReading />} /> 
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 

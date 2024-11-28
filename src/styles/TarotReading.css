@@ -1,0 +1,158 @@
+/* Основные стили контейнера */
+.tarot-reading-container {
+  background-color: #f8f8f8;
+  color: #333;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.tarot-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #6a4eae;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Стили для блока с картами */
+.tarot-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Стили для каждой карты */
+.tarot-card {
+  width: 150px;
+  height: 250px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarot-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Выбранная карта */
+.tarot-card.selected {
+  transform: scale(1.15); /* Увеличиваем немного */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 3px solid #6a4eae;
+  z-index: 10; /* Поднимаем карту над остальными */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+/* Для остальных карт уменьшаем масштаб */
+.tarot-card:not(.selected) {
+  transform: scale(0.85);
+  opacity: 0.8; /* Делает невыбранные карты более тусклыми */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Дополнительное приближение при наведении */
+.tarot-card.selected:hover {
+  transform: scale(1.2); /* Немного больше при наведении */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Стили для изображения карты */
+.tarot-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Анимация появления текста */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Плавное появление с небольшого смещения вниз */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Заголовки и текст */
+.tarot-card-details h2 {
+  font-size: 1.8rem;
+  color: #6a4eae;
+  margin-bottom: 15px;
+}
+
+.tarot-card-details h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.tarot-card-details p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+
+/* Мистическое описание */
+.tarot-description {
+  font-size: 1.2rem;
+  color: #777;
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  text-align: center; /* Чтобы текст был по центру */
+  visibility: visible; /* Убедитесь, что элемент видим */
+  z-index: 10;
+}
+
+/* Стили для описания карты */
+.tarot-card-details {
+  display: none; /* Скрыть блок */
+  margin-top: 5%;
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 1;
+}
+
+.tarot-card-details.visible {
+  display: block; /* Показать блок */
+  animation: fadeIn 0.5s ease-in-out; /* Анимация появления */
+}
+
+
+
+.tarot-reading-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url(../img/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+}

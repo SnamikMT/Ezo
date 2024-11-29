@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import AuthPopup from '../components/AuthPopup'; // Импортируем поп-ап
 import '../styles/Home.css';
 import right from '../img/large-image.png';
 import image1 from '../img/image1.png';
@@ -17,6 +18,35 @@ const Home = () => {
   const [backgroundColor, setBackgroundColor] = useState('#2b2e4a');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const togglePopup = () => setShowPopup(!showPopup);
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('authToken'); // Удаляем токен при выходе
+    console.log('Вы вышли из системы.');
+  };
+
+  // Функция для изменения состояния аутентификации
+  const handleAuthChange = (authStatus) => {
+    setIsAuthenticated(authStatus);
+    if (authStatus) {
+      // Сохраняем токен в localStorage при успешной авторизации
+      localStorage.setItem('authToken', 'your_token_here'); // Замените на реальный токен
+    } else {
+      localStorage.removeItem('authToken'); // Удаляем токен при выходе
+    }
+  };
+
+  // Проверка авторизации при загрузке страницы
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsAuthenticated(true); // Если токен найден, считаем, что пользователь авторизован
+    }
+  }, []);
   
   const sections = [
     {
@@ -48,8 +78,6 @@ const Home = () => {
     },
   ];
   
-  
-
   const imageRefs = useRef([]);
 
   const handleScroll = () => {
@@ -142,7 +170,7 @@ const Home = () => {
               <div className="divider"></div>
               <Link to="/tarot" className="header__link">Таро расклад</Link>
               <div className="divider"></div>
-              <a href="#Matrix" onClick={toggleMenu}>Матрица</a>
+              <a href="/matrix" onClick={toggleMenu}>Матрица</a>
               <div className="divider"></div>
               <Link to="/natal-chart" className="header__link">Натальная карта</Link>
             </div>
@@ -183,14 +211,31 @@ const Home = () => {
         </div>
 
         <div className={isVisible ? "visible" : ""}>
-      <button className="auth">
-        <div className="front">
-          <span>Войти</span>
-        </div>
-        <div className="back">
-          <span>Жми уже</span>
-        </div>
-      </button>
+        <>
+          {isAuthenticated ? (
+            <button className="auth" onClick={handleLogout}>
+              <div className="front">
+                <span>Выйти</span>
+              </div>
+              <div className="back">
+                <span>Уже уходите(?</span>
+              </div>
+            </button>
+          ) : (
+            <button className="auth" onClick={togglePopup}>
+              <div className="front">
+                <span>Войти</span>
+              </div>
+              <div className="back">
+                <span>Жми сюда</span>
+              </div>
+            </button>
+          )}
+          {showPopup && !isAuthenticated && (
+            <AuthPopup onClose={togglePopup} onAuthChange={handleAuthChange} />
+          )}
+        </>
+      
 
       <img className="star" src={star} alt="star 1" />
       <img className="star2" src={star2} alt="star 2" />

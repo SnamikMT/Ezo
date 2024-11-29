@@ -1,0 +1,223 @@
+/* Общий фон для затемнения */
+.auth-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Затемнение фона */
+    backdrop-filter: blur(5px); /* Эффект размытия */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Попап всегда сверху */
+}
+
+/* Контейнер для контента попапа */
+.auth-popup__content {
+    background: #ffffff; /* Белый фон */
+    border-radius: 12px; /* Скругленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Тень */
+    width: 100%;
+    max-width: 400px; /* Ограничение по ширине */
+    padding: 2rem;
+    animation: fadeIn 0.3s ease-in-out; /* Плавное появление */
+    position: relative;
+}
+
+/* Кнопка закрытия попапа */
+.auth-popup__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.auth-popup__close:hover {
+    color: #e74c3c; /* Красный при наведении */
+}
+
+/* Заголовок */
+.auth-popup__content h2 {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Поля ввода */
+.auth-popup__content input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.auth-popup__content input:focus {
+    outline: none;
+    border-color: #3498db; /* Синий при фокусе */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Кнопка отправки */
+.auth-popup__content button[type="submit"] {
+    width: 100%;
+    background: #5646ef; /* Основной цвет кнопки */
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.auth-popup__content button[type="submit"]:hover {
+    background: #6f60f7; /* Темнее при наведении */
+}
+
+/* Переключатель режимов */
+.auth-popup__toggle {
+    margin-top: 1rem;
+    background: none;
+    border: none;
+    color: #5646ef;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.auth-popup__toggle:hover {
+    color: #6d5ef7;
+}
+
+/* Сообщения об ошибках и успехах */
+.auth-popup__message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #e74c3c; /* Красный для ошибок */
+}
+
+.auth-popup__message.success {
+    color: #2ecc71; /* Зелёный для успеха */
+}
+
+/* Поля для ввода кода подтверждения */
+.code-input-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* Уменьшаем промежуток */
+    margin: 0 auto;
+}
+
+.code-input {
+    width: 45px; /* Достаточный размер для одного символа */
+    height: 50px; /* Увеличенная высота */
+    font-size: 1.5rem; /* Четкий крупный текст */
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.code-input:focus {
+    border-color: #5646ef;
+    box-shadow: 0 0 8px rgba(52, 70, 239, 0.5); /* Более выраженный фокус */
+}
+
+.code-input:disabled {
+    background-color: #f0f0f0; /* Легкий серый фон */
+    cursor: not-allowed;
+}
+
+.code-input-container p {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.auth-popup__content input {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.auth-popup__content input:focus {
+    border-color: #5646ef;
+    box-shadow: 0 0 5px rgba(52, 70, 239, 0.5);
+}
+
+.code-input.error {
+    border-color: #e74c3c;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25%, 75% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Стили для кружка загрузки */
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3; /* Светлый фон */
+    border-top: 4px solid #5646ef; /* Основной цвет */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+/* Анимация вращения */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.code-input {
+    border: 1px solid red; /* Временно для проверки */
+}
+

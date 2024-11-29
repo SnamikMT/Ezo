@@ -298,7 +298,6 @@ body, html {
   justify-content: center;
   height: 100vh;
   color: #fff;
-  background: linear-gradient(to right, #726DC3 60%, #F5F5F5 60%);
   background-size: 200% 100%; /* Увеличиваем размер для анимации */
   animation: gradient-animation 3s ease-in-out forwards; /* Анимация градиента */
 }
@@ -460,7 +459,6 @@ body, html {
     position: absolute;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.9);
   }
 
   .menu-button-wrapper {
@@ -633,4 +631,43 @@ body, html {
 .service__image--natal-chart {
   left: -50px;
   width: 250px;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 768px) {
+  .service__track {
+    opacity: 0.3;
+  }
+
+  .service__content h2, p, a {
+    z-index: 3;
+  }
+
+  .service__link {
+    width: 70%;
+  }
+
+  .hero {
+    background: linear-gradient(to right, #726DC3 100%, #F5F5F5 0%);
+  }
+
+  .visible, .hero__image {
+    display: none;
+  }
+
+  .hero__content h1 {
+    font-size: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__content h1 {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__content h1 {
+    font-size: 45px;
+  }
 }

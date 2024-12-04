@@ -550,9 +550,8 @@ body {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: 10% auto;
     max-width: 1200px;
-    margin-top: 15%;
 }
 
 .blurred-background {
@@ -903,6 +902,10 @@ header {
 
     .header_nav-icon {
         display: none
+    }
+
+    .container {
+      margin-top: 15%;
     }
 }
 

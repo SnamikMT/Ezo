@@ -1404,4 +1404,8 @@ li,ol,ul {
     animation: fadeIn 0.3s ease-in-out;
   }
   
-  
+  @media (max-width: 380px) {
+    .lend .text {
+        font-size: 15px;
+    }
+  }

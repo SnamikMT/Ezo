@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Tarot.css';
 import offerWebp from '../img/offer.webp';
-import offerPng from '../img/offer.png';
+import offerPng from '../img/offer2.png';
 import magic2 from '../img/магик2.svg';
 import magic from '../img/магик1.svg';
 import taros from '../img/расклад.png';
+import logo from '../img/logoHome2.svg';
 
 const Tarot = () => {
   const [progress, setProgress] = useState(0);
@@ -15,8 +17,13 @@ const Tarot = () => {
   const [offerTimer, setOfferTimer] = useState(600); // Таймер в секундах (10 минут)
   const [cards, setCards] = useState([]);
   const [interpretation, setInterpretation] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const messages = [
     "Карты Таро начинают шептать...",
@@ -95,6 +102,51 @@ const Tarot = () => {
 
   return (
     <div id="app">
+      <nav className="header__navHome">
+        <div className="header__leftHome">
+          <img src={logo} alt="Logo" className="header__imageHome" />
+        </div>
+        <div className="header__linksHome">
+          <Link to="/tarot" className="header__linkHome">Таро расклад</Link>
+          <Link to="/matrix" className="header__linkHome">Матрица судьбы</Link> 
+          <Link to="/natal-chart" className="header__linkHome">Натальная карта</Link>
+        </div>
+        <div className="header__right">
+        </div>
+      </nav>
+
+
+        <nav className="navbar-1">
+        <div className="header__mobile">
+          <img src={logo} alt="Logo" className="header__imageHome" />
+        </div>
+          <div className="menu-button-wrapper">
+            <input 
+              type="checkbox" 
+              className="menu-button" 
+              id="menu-button" 
+              checked={isMenuOpen} 
+              onChange={toggleMenu} 
+            />
+            <div className="icon-wrapper">
+              <label className="hamburger" htmlFor="menu-button" onClick={toggleMenu}>
+                <span className="hamburger-line first"></span>
+                <span className="hamburger-line second"></span>
+                <span className="hamburger-line third"></span>
+              </label>
+            </div>
+            <div className={`item-list ${isMenuOpen ? 'open' : ''}`}>
+              <Link to="/">Главная страница</Link>
+              <div className="divider"></div>
+              <Link to="/tarot" className="header__link">Таро расклад</Link>
+              <div className="divider"></div>
+              <a href="/matrix" onClick={toggleMenu}>Матрица</a>
+              <div className="divider"></div>
+              <Link to="/natal-chart" className="header__link">Натальная карта</Link>
+            </div>
+          </div>
+        </nav>
+
       <main>
         <div className="lend">
           <div className="element">

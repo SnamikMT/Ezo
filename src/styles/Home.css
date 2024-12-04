@@ -189,6 +189,7 @@ body, html {
   transition: color 0.3s ease;
   cursor: pointer;
   font-family: cursive;
+  text-align: center;
 }
 
 .button-text:hover {
@@ -384,11 +385,12 @@ body, html {
 .header__navHome {
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: center;
   padding: 20px 0;
   left: 5%;
+  justify-content: space-between;
 }
 
 .header__leftHome {
@@ -404,7 +406,6 @@ body, html {
 .header__linksHome {
   display: flex;
   gap: 20px;
-  padding-left: 5%;
   font-family: cursive;
 }
 

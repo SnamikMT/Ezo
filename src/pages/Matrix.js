@@ -93,12 +93,14 @@ const Matrix = () => {
           <Link to="/natal-chart" className="header__link">Натальная карта</Link>
         </div>
         <div className="header__right">
-          <img src="/path/to/login-icon.png" alt="Login" className="header__login-icon" />
         </div>
       </nav>
 
 
         <nav className="navbar-1">
+        <div className="header__mobile">
+          <img src={logo} alt="Logo" className="header__imageHome" />
+        </div>
           <div className="menu-button-wrapper">
             <input 
               type="checkbox" 

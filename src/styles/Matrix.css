@@ -529,7 +529,7 @@ code {
     }
 
     .footer-navbar,.menu-button-wrapper,.navbar,.navbar-1 {
-        justify-content: right!important
+        justify-content: space-between
     }
 }
 
@@ -552,7 +552,7 @@ body {
     justify-content: space-between;
     margin: 0 auto;
     max-width: 1200px;
-    margin-top: 10%;
+    margin-top: 15%;
 }
 
 .blurred-background {

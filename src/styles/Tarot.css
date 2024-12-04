@@ -167,7 +167,8 @@ footer ul {
 .lend {
     margin-inline:auto;max-width: 1400px;
     padding-bottom: 32px;
-    width: 100%
+    width: 100%;
+    padding-top: 2%;
 }
 
 .element img{
@@ -192,11 +193,14 @@ footer ul {
     flex-direction: column;
     gap: 32px;
     margin-inline:auto;max-width: 360px;
-    padding-inline:20px}
+    padding-inline:20px;
+    margin-top: 5%;
+}
+
 
 .lend .text {
     color: #fff;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: 18px;
     font-weight: 400
 }
@@ -204,7 +208,7 @@ footer ul {
 .lend h1 {
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #fff;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: 28px;
     font-weight: 700;
     line-height: 120%;
@@ -215,7 +219,7 @@ footer ul {
 .lend .h3 {
     -webkit-text-fill-color: transparent;
     background: -webkit-gradient(linear,left top,right top,from(#fa709a),to(#fee140));
-    background: linear-gradient(90deg,#fa709a,#fee140);
+    background: linear-gradient(90deg, #7c43ee, #fa709a);
     background-clip: text;
     -webkit-background-clip: text;
     text-transform: uppercase
@@ -305,6 +309,10 @@ body {
 @media (width <= 768px) {
     #app {
         padding-top: 65px
+    }
+
+    .element,.element2 {
+        display: none;
     }
 }
 
@@ -436,7 +444,7 @@ li,ol,ul {
 
 .forms__flex input[type=radio]:checked+label:after {
     background: -webkit-gradient(linear,left top,right top,from(#fa709a),to(#fee140));
-    background: linear-gradient(90deg,#fa709a,#fee140);
+    background: linear-gradient(90deg, #7c43ee, #fa709a);
     border-radius: 50%;
     content: "";
     height: 12px;
@@ -507,12 +515,12 @@ li,ol,ul {
     border-radius: 12px;
     color: #d9d9d9;
     cursor: pointer;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: 15px;
     font-weight: 400;
     line-height: 23px;
     padding: 12px;
-    width: calc(100% - 0px)
+    width: calc(94% - 0px)
 }
 
 .forms .name::-webkit-input-placeholder {
@@ -559,7 +567,7 @@ li,ol,ul {
 
 .bottom .faq {
     color: #fff;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: 22px;
     font-weight: 700;
     line-height: 136%;
@@ -665,7 +673,7 @@ li,ol,ul {
 
 .load-subtitle,.load-title {
     color: #fff;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     text-align: center
 }
 
@@ -776,7 +784,7 @@ li,ol,ul {
 
 .result-title {
     color: #fff;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: clamp(1.6875rem,1.2764rem + 1.8269vw,2.875rem);
     font-weight: 700;
     line-height: 150%;
@@ -808,7 +816,7 @@ li,ol,ul {
 
 .result__price .timer__time {
     color: #fff;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: clamp(1.125rem,1.0385rem + .3846vw,1.375rem);
     font-variant-numeric: tabular-nums;
     font-weight: 700;
@@ -851,7 +859,7 @@ li,ol,ul {
 
 .result__gift .gift-title {
     color: #fff;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: clamp(1.125rem,1.0385rem + .3846vw,1.375rem);
     font-weight: 400;
     line-height: 30px
@@ -877,7 +885,7 @@ li,ol,ul {
 .result .form__email {
     background-color: #fff;
     color: #0f0a0c;
-    font-family: Mulish,sans-serif;
+    font-family: cursive;
     font-size: 15px;
     font-weight: 400;
     line-height: 23px;
@@ -1044,7 +1052,6 @@ li,ol,ul {
     width: 90%;
     text-align: center;
     z-index: 9999;
-    font-family: Arial, sans-serif;
     animation: fadeIn 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -1262,7 +1269,6 @@ li,ol,ul {
     width: 320px;
     z-index: 1002;
     color: #fff;
-    font-family: 'Arial', sans-serif;
   }
   
   /* Заголовок */
@@ -1397,4 +1403,5 @@ li,ol,ul {
   .new-overlay {
     animation: fadeIn 0.3s ease-in-out;
   }
+  
   

@@ -150,6 +150,9 @@ const Home = () => {
 
 
         <nav className="navbar-1">
+        <div className="header__mobile">
+          <img src={logo} alt="Logo" className="header__imageHome" />
+        </div>
           <div className="menu-button-wrapper">
             <input 
               type="checkbox" 
@@ -184,9 +187,9 @@ const Home = () => {
             <div className="button-container">
               <a href="#tarot" className="hero-link"> {/* Ссылка на секцию Таро */}
                 <button className="hero-button">
-                  <img src={image1} alt="Button 1" />
+                  <img src={image3} alt="Button 1" />
                 </button>
-                <span className="button-text">Забрать карту</span>
+                <span className="button-text">Забрать расклад</span>
               </a>
             </div>
             <div className="button-container">
@@ -200,9 +203,9 @@ const Home = () => {
             <div className="button-container">
               <a href="#natal-chart" className="hero-link"> {/* Ссылка на секцию Натальная карта */}
                 <button className="hero-button">
-                  <img src={image3} alt="Button 3" />
+                  <img src={image1} alt="Button 3" />
                 </button>
-                <span className="button-text">Забрать расклад</span>
+                <span className="button-text">Натальная карта</span>
               </a>
             </div>
           </div>

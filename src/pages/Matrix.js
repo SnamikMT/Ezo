@@ -136,11 +136,13 @@ const Matrix = () => {
       <header>
       <nav className="header__nav">
         <div className="header__left">
-          <img src={logo} alt="Logo" className="header__image" />
+          <Link to="/"> {/* Добавляем Link с атрибутом to="/" для перехода на главную страницу */}
+            <img src={logo} alt="Logo" className="header__image" />
+          </Link>
         </div>
         <div className="header__links">
           <Link to="/tarot" className="header__link">Таро расклад</Link>
-          <Link to="/matrix" className="header__link">Матрица судьбы</Link> 
+          <Link to="/matrix" className="header__link">Матрица судьбы</Link>
           <Link to="/natal-chart" className="header__link">Натальная карта</Link>
         </div>
         <div className="header__right">

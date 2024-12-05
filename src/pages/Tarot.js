@@ -159,7 +159,9 @@ const Tarot = () => {
     <div id="app">
       <nav className="header__navHome">
         <div className="header__leftHome">
-          <img src={logo} alt="Logo" className="header__imageHome" />
+        <Link to="/"> 
+            <img src={logo} alt="Logo" className="header__image" />
+          </Link>
         </div>
         <div className="header__linksHome">
           <Link to="/tarot" className="header__linkHome">Таро расклад</Link>
@@ -173,7 +175,9 @@ const Tarot = () => {
 
         <nav className="navbar-1">
         <div className="header__mobile">
-          <img src={logo} alt="Logo" className="header__imageHome" />
+        <Link to="/"> 
+            <img src={logo} alt="Logo" className="header__image" />
+          </Link>
         </div>
           <div className="menu-button-wrapper">
             <input 

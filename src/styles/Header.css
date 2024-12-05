@@ -13,6 +13,7 @@
   .header__nav {
     justify-content: space-between;
     align-items: center;
+    width: 88%;
   }
   
   /* Логотип */

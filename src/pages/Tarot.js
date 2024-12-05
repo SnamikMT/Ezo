@@ -18,6 +18,13 @@ const Tarot = () => {
   const [cards, setCards] = useState([]);
   const [interpretation, setInterpretation] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    sex: "woman",
+    day: "",
+    month: "",
+    year: "",
+    name: "",
+  });
 
   const navigate = useNavigate();
 
@@ -33,22 +40,35 @@ const Tarot = () => {
     "Таро открывает двери вселенной..."
   ];
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const isFormValid = () => {
+    const { sex, day, month, year, name } = formData;
+    return sex && day && month && year && name.trim() !== "";
+  };
+
   useEffect(() => {
     let interval;
     if (isCalculating && progress < 100) {
       interval = setInterval(() => {
-        setProgress((prev) => {
-          const newProgress = prev + 2;
-          if (newProgress % 20 === 0 && newProgress < 100) {
-            setText(messages[(newProgress / 20) - 1]);
-          }
-          return Math.min(newProgress, 100);
-        });
+        setProgress((prev) => Math.min(prev + 2, 100));
       }, 80);
     } else if (progress >= 100) {
       clearInterval(interval);
       setText("Расклад завершен! Переворачиваем карты...");
-      setTimeout(() => setShowPopup(true), 1000);
+      setTimeout(() => {
+        if (isFormValid()) {
+          setShowPopup(true);
+        } else {
+          alert("Пожалуйста, заполните все поля формы.");
+        }
+      }, 1000);
     }
     return () => clearInterval(interval);
   }, [isCalculating, progress]);
@@ -63,10 +83,45 @@ const Tarot = () => {
   }, [showPopup, offerTimer]);
 
   const handleCalculate = () => {
+    // Получение значений из полей
+    const selectedDay = document.getElementById("day").value;
+    const selectedMonth = document.getElementById("month").value;
+    const selectedYear = document.getElementById("year").value;
+    const nameInput = document.getElementById("name").value.trim();
+  
+    // Проверка заполненности всех полей
+    if (!selectedDay || !selectedMonth || !selectedYear || !nameInput) {
+      alert("Пожалуйста, заполните все поля перед расчетом.");
+      return;
+    }
+  
+    // Если все поля заполнены, начинаем расчет
     setIsCalculating(true);
     setProgress(0);
     setText("Начинаем магию...");
+  
+    const messages = [
+      "Карты Таро начинают шептать...",
+      "Энергия вокруг вас усиливается...",
+      "Карты собирают вашу судьбу...",
+      "Расклад готовится... терпение!",
+      "Таро открывает двери вселенной..."
+    ];
+  
+    let messageIndex = 0;
+    
+    // Функция для обновления текста с интервалом
+    const intervalId = setInterval(() => {
+      if (messageIndex < messages.length) {
+        setText(messages[messageIndex]);
+        messageIndex += 1;
+      } else {
+        clearInterval(intervalId); // Останавливаем интервал после завершения
+      }
+    }, 1000); // Интервал смены сообщений (2 секунды)
   };
+  
+  
 
   const handleGetTarot = () => {
     const tarotDeck = [
@@ -173,61 +228,97 @@ const Tarot = () => {
               </div>
             </section>
             <section className="forms">
-              <div className="forms__content">
-                <div className="h3">Получите расклад Таро</div>
-                <div className="forms__flex">
-                  <p className="text">Пол:</p>
-                  <input type="radio" name="sex" id="woman" defaultChecked />
-                  <label htmlFor="woman"><p className="text">Женский</p></label>
-                  <input type="radio" name="sex" id="man" />
-                  <label htmlFor="man"><p className="text">Мужской</p></label>
-                </div>
-                <div className="h3">Укажите дату рождения</div>
-                <div className="forms__flex">
-                  <select name="day" id="day">
-                    {[...Array(31)].map((_, index) => (
-                      <option key={index} value={index + 1}>
-                        {index + 1}
-                      </option>
-                    ))}
-                  </select>
-                  <select name="month" id="month">
-                    {['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'].map((month, index) => (
-                      <option key={index} value={index + 1}>
-                        {month}
-                      </option>
-                    ))}
-                  </select>
-                  <select name="year" id="year">
-                    {[...Array(100)].map((_, index) => {
-                      const year = new Date().getFullYear() - index;
-                      return (
-                        <option key={year} value={year}>
-                          {year}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-                <div className="h3">Укажите имя</div>
-                <label className="label-name" htmlFor="name">
-                  <input
-                    className="name"
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Имя"
-                  />
-                </label>
-              </div>
-              <button
-                className="link open"
-                onClick={handleCalculate}
-                disabled={isCalculating}
-              >
-                Рассчитать
-              </button>
-            </section>
+        <div className="forms__content">
+          <div className="h3">Получите расклад Таро</div>
+          <div className="forms__flex">
+            <p className="text">Пол:</p>
+            <input
+              type="radio"
+              name="sex"
+              id="woman"
+              value="woman"
+              checked={formData.sex === "woman"}
+              onChange={handleInputChange}
+            />
+            <label htmlFor="woman">
+              <p className="text">Женский</p>
+            </label>
+            <input
+              type="radio"
+              name="sex"
+              id="man"
+              value="man"
+              checked={formData.sex === "man"}
+              onChange={handleInputChange}
+            />
+            <label htmlFor="man">
+              <p className="text">Мужской</p>
+            </label>
+          </div>
+          <div className="h3">Укажите дату рождения</div>
+          <div className="forms__flex">
+            <select name="day" id="day" onChange={handleInputChange}>
+              <option value="">День</option>
+              {[...Array(31)].map((_, index) => (
+                <option key={index} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
+            <select name="month" id="month" onChange={handleInputChange}>
+              <option value="">Месяц</option>
+              {[
+                "Январь",
+                "Февраль",
+                "Март",
+                "Апрель",
+                "Май",
+                "Июнь",
+                "Июль",
+                "Август",
+                "Сентябрь",
+                "Октябрь",
+                "Ноябрь",
+                "Декабрь",
+              ].map((month, index) => (
+                <option key={index} value={index + 1}>
+                  {month}
+                </option>
+              ))}
+            </select>
+            <select name="year" id="year" onChange={handleInputChange}>
+              <option value="">Год</option>
+              {[...Array(100)].map((_, index) => {
+                const year = new Date().getFullYear() - index;
+                return (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="h3">Укажите имя</div>
+          <label className="label-name" htmlFor="name">
+            <input
+              className="name"
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Имя"
+              value={formData.name}
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
+        <button
+          className="link open"
+          onClick={handleCalculate}
+          disabled={isCalculating}
+        >
+          Рассчитать
+        </button>
+      </section>
             {isCalculating && (
               <div className="progress-container">
                 {progress < 100 ? (
@@ -245,11 +336,20 @@ const Tarot = () => {
               <div className="offer-popup">
                 <h2>Расклад Таро готов!</h2>
                 <img src={taros} alt="Предложение" />
-                <p className='personal'>Персональный таро расклад готов!</p>
-                <p className='offs'>Предложение действует: <b>{Math.floor(offerTimer / 60)} минут {offerTimer % 60} секунд</b></p>
-                <p>В подарок<br></br>
-                Персональная натальная карта по дате рождения</p>
+                
+                <p className='offs'>Карты исчезнут через: <b>{Math.floor(offerTimer / 60)} минут {offerTimer % 60} секунд</b></p>
+                <p className='personal'>Первые 7 дней, далее 399₽ или 99₽ раз в 30 дней или в зависимости от условий. Отмена в любой момент.</p>
+                <div className="input-wrap">
+                  <input
+                    placeholder="Введите ваш e-mail"
+                    name="order[email]"
+                    id="email"
+                    type="email"
+                    className="form__email form__main-user-email"
+                  />
+                </div>
                 <button onClick={handleGetTarot}>Получить расклад</button>
+                <p className='personaldes'>Нажимая кнопку "Получить расклад" вы подтверждаете ознакомление с офертой и тарифами, а также даете согласие на обработку персональных данных.</p>
                 <div className="cards-container">
                   {cards.map((card, index) => (
                     <div key={index} className="card">

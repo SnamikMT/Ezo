@@ -1,8 +1,7 @@
 /*===== MATRIX =====*/
 /* Основное содержимое */
 .matrix {
-    position: relative;
-    z-index: 2; 
+    position: relative; 
     padding: 20px;
     border-radius: 30px;
   }
@@ -250,7 +249,7 @@
   /* Стили для заголовков */
   .title {
     font-size: 26px;
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'Comic Sans MS', cursive;
     font-weight: bold;
     color: #7c43ee;
     margin: 5px;
@@ -266,6 +265,7 @@
     letter-spacing: 0.5px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     text-align: center;
+    font-family: 'Comic Sans MS', cursive;
   }
   .subtitle:hover {
     color: #fa709a;
@@ -377,6 +377,7 @@
     font-size: 18px;
     margin-top: 30px;
     line-height: 1.5;
+    font-family: 'Comic Sans MS', cursive;
   }
   
   /*===== HOVER-Effect =====*/
@@ -550,7 +551,6 @@ body {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 10% auto;
     max-width: 1200px;
 }
 
@@ -1103,12 +1103,12 @@ footer {
     }
 }
 
-
 .matrix-page {
     background-image: url('../img/backs.png'); /* Путь к вашему изображению */
     background-size: cover; /* Покрывает всю область элемента */
     background-position: center; /* Центрирует изображение */
     background-repeat: no-repeat; /* Избегает повторения изображения */
+    min-height: 900px;
   }
   
   .matrix-page::before {
@@ -1232,4 +1232,70 @@ footer {
       display: flex; /* Показать гамбургер-меню */
     }
   }
+  
+
+  .matrix-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    z-index: 1000;
+  }
+  
+  .matrix-popup h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .matrix-popup img {
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+  }
+  
+  .matrix-popup button {
+    padding: 10px 20px;
+    background-color: #726dc3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .matrix-popup button:hover {
+    background-color: #726dc3;
+  }
+
+  .ofMatrix b {
+    color: #726dc3;
+  }
+  
+  .matrix-popup .input-wrap {
+    margin-top: 15px;
+  }
+  
+  .matrix-popup input {
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .matrix-popup .personal {
+    font-size: 14px;
+    margin-top: 15px;
+    color: #666;
+  }
+  
   

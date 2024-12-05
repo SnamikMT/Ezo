@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import ScrollToTop from './components/ScrollToTop';
 import NatalChart from './pages/NatalChart';
 import Tarot from './pages/Tarot';
 import Matrix from './pages/Matrix';
@@ -11,6 +12,7 @@ import TarotReading from './components/TarotReading';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />

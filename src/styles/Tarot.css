@@ -200,7 +200,7 @@ footer ul {
 
 .lend .text {
     color: #fff;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 18px;
     font-weight: 400
 }
@@ -208,7 +208,7 @@ footer ul {
 .lend h1 {
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #fff;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 28px;
     font-weight: 700;
     line-height: 120%;
@@ -515,7 +515,7 @@ li,ol,ul {
     border-radius: 12px;
     color: #d9d9d9;
     cursor: pointer;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 15px;
     font-weight: 400;
     line-height: 23px;
@@ -567,7 +567,7 @@ li,ol,ul {
 
 .bottom .faq {
     color: #fff;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 22px;
     font-weight: 700;
     line-height: 136%;
@@ -673,7 +673,7 @@ li,ol,ul {
 
 .load-subtitle,.load-title {
     color: #fff;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     text-align: center
 }
 
@@ -784,7 +784,7 @@ li,ol,ul {
 
 .result-title {
     color: #fff;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: clamp(1.6875rem,1.2764rem + 1.8269vw,2.875rem);
     font-weight: 700;
     line-height: 150%;
@@ -816,7 +816,7 @@ li,ol,ul {
 
 .result__price .timer__time {
     color: #fff;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: clamp(1.125rem,1.0385rem + .3846vw,1.375rem);
     font-variant-numeric: tabular-nums;
     font-weight: 700;
@@ -859,7 +859,7 @@ li,ol,ul {
 
 .result__gift .gift-title {
     color: #fff;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: clamp(1.125rem,1.0385rem + .3846vw,1.375rem);
     font-weight: 400;
     line-height: 30px
@@ -885,7 +885,7 @@ li,ol,ul {
 .result .form__email {
     background-color: #fff;
     color: #0f0a0c;
-    font-family: cursive;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 15px;
     font-weight: 400;
     line-height: 23px;
@@ -1045,7 +1045,7 @@ li,ol,ul {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    padding: 30px;
+    padding: 15px;
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     max-width: 500px;
@@ -1069,7 +1069,7 @@ li,ol,ul {
   }
   
   .offer-popup h2 {
-    font-size: 28px;
+    font-size: 45px;
     color: #333;
     margin-bottom: 15px;
     font-weight: bold;
@@ -1082,29 +1082,39 @@ li,ol,ul {
   }
   
   .offer-popup p {
-    font-size: 18px;
     color: #555;
     margin-bottom: 15px;
+    font-family: 'Comic Sans MS', cursive;
   }
   
   .offer-popup p b {
     font-weight: bold;
     font-size: 20px;
-    color: #ffb95e;
+    color: #726dc3;
+  }
+
+  .personaldes{
+    font-size: 14px;
   }
   
   .offer-popup form {
     margin-bottom: 20px;
   }
-  
-  .offer-popup input[type="email"] {
+
+  .input-wrap {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
   }
+  
+  .input-wrap input {
+    width: 100%; 
+    padding: 16px 24px; 
+    border: 1px solid #ccc; 
+    border-radius: 12px; 
+    font-size: 20px; 
+    box-sizing: border-box; 
+    margin-bottom: 3%;
+  }
+  
   
   .offer-popup button {
     -webkit-box-pack: center;

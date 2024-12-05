@@ -7,6 +7,7 @@ import '../styles/Form.css';
 import web from '../img/backs.png';
 import arrow from '../img/arrow-right.png';
 import logo from '../img/logoMatrica.svg';
+import matrixImage from '../img/matrixOff.png';
 
 // Импортируем необходимые функции
 import { calculateChakras } from '../components/matrix-calculator';
@@ -16,6 +17,29 @@ const Matrix = () => {
   const [dob, setdob] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const yearRef = useRef(null);  
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [showMatrix, setShowMatrix] = useState(false);
+  const [matrixTimer, setMatrixTimer] = useState(3600);
+  const [isMatrixVisible, setIsMatrixVisible] = useState(false);
+
+  const handleGetMatrix = () => {
+    // Логика получения матрицы судьбы
+    setShowMatrix(true);
+    startMatrixTimer(); // Запуск таймера
+  };
+  
+  const startMatrixTimer = () => {
+    const interval = setInterval(() => {
+      setMatrixTimer(prevTime => {
+        if (prevTime <= 0) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,6 +48,33 @@ const Matrix = () => {
   const handleInputChange = (e) => {
     setdob(e.target.value);
   };
+
+  const handleCalculateClick = () => {
+    const dateValue = yearRef.current?.value;
+  
+    if (!dateValue) {
+        alert('Пожалуйста, выберите дату рождения.');
+        return;
+    }
+    
+    setShowMatrix(false);
+    setIsMatrixVisible(true);
+  
+    // Эмуляция загрузки (например, 2 секунды)
+    setTimeout(() => {
+      calculateMatrix();
+    }, 1000); 
+  };
+  
+  const MatrixLoading = () => {
+    return (
+      <div className="matrix-loading">
+        <div className="loading-text">Загрузка...</div>
+        <div className="matrix-effect">МАТРИЦА ИНФОРМАЦИИ...</div>
+      </div>
+    );
+  };
+  
 
   const calculateMatrix = () => {
     const dateValue = yearRef.current?.value;
@@ -130,44 +181,77 @@ const Matrix = () => {
       </header>
 
       <div className="container main_1">
-        
-          <section className="main-left_1">
-  
-              <div className="image-text">
-                <h2>Матрица Судьбы</h2>
-                <p>Узнайте свою судьбу и получите полезные советы для улучшения жизни.</p>
-              </div>
-            <form className="form form-matrixBox" onSubmit={handleSubmit}>
-              <div className="form_input">
-                  <div className="form_input-date">
-                      <label htmlFor="dob" className="date-label">Введите дату рождения</label>
-                      <input
-                          ref={yearRef}
-                          type="date" 
-                          id="year"
-                          value={dob} 
-                          onChange={handleInputChange}
-                          required
-                          min="1900-01-01"
-                          placeholder="(дата рождения)"
-                      />
-                  </div>
-              </div>
-              <div className="form_input-button">
-                  <button className="btn" type="submit">Рассчитать</button>
-              </div>
-              
-              <div className="ageDisplay" id="age-display">
-                  <p id="ageText"></p>
-              </div>
-            </form>
-            
-            
-          </section>
-
-          
+      {/* Основная часть страницы */}
+      <section className="main-left_1">
+        <div className="image-text">
+          <h2>Матрица Судьбы</h2>
+          <p>Узнайте свою судьбу и получите полезные советы для улучшения жизни.</p>
         </div>
 
+        <form className="form form-matrixBox" onSubmit={handleSubmit}>
+          <div className="form_input">
+            <div className="form_input-date">
+              <label htmlFor="dob" className="date-label">Введите дату рождения</label>
+              <input
+                ref={yearRef}
+                type="date"
+                id="year"
+                value={dob}
+                onChange={handleInputChange}
+                required
+                min="1900-01-01"
+                placeholder="(дата рождения)"
+              />
+            </div>
+          </div>
+
+          <div className="form_input-button">
+            <button
+              className="btn"
+              type="button"
+              onClick={handleGetMatrix}
+            >
+              Рассчитать
+            </button>
+          </div>
+
+          <div className="ageDisplay" id="age-display">
+            <p id="ageText"></p>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div className="container matrix" id="Matrix">
+      {showMatrix && (
+        <div className="matrix-popup">
+          <h2>Матрица Судьбы готова!</h2>
+          <img src={matrixImage} alt="Матрица Судьбы" />
+          
+          <p className='ofMatrix'>Матрица исчезнет через: <b>{Math.floor(matrixTimer / 360)} минут {matrixTimer % 60} секунд</b></p>
+          <p className='personal'>Первые 7 дней, далее 399₽ или 99₽ раз в 30 дней или в зависимости от условий. Отмена в любой момент.</p>
+          <div className="input-wrap">
+            <input
+              placeholder="Введите ваш e-mail"
+              name="order[email]"
+              id="email"
+              type="email"
+              className="form__email form__main-user-email"
+            />
+          </div>
+          <button onClick={handleCalculateClick}>Получить матрицу судьбы</button>
+          <p className='personaldes'>Нажимая кнопку "Получить матрицу судьбы" вы подтверждаете ознакомление с офертой и тарифами, а также даете согласие на обработку персональных данных.</p>
+        </div>
+      )}
+
+
+      <div className="blurred-background"></div>
+      <div className="matrix-content">
+        {/* Содержимое страницы */}
+      </div>
+    </div>
+
+    {isMatrixVisible && (
         <div className="container matrix" id="Matrix">
           <div className="blurred-background"></div>
           <div className="matrix-content">
@@ -345,6 +429,7 @@ const Matrix = () => {
             </div>
           </div>
         </div>
+        )}
     </div>
   );
 };
